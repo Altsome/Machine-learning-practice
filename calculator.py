@@ -2,6 +2,17 @@ class Calculator:
     def __init__(self):
         self.count = 1
 
+    def calculate(self, x, y, op):
+        methods = {
+            "+": self.add,
+            "-": self.sub,
+            "*": self.mul,
+            "/": self.div,
+        }
+        if op not in methods:
+            print("invalid")
+        return methods[op](x, y)
+
     def add(self, x, y):
         self.count += 1
         return x + y
@@ -22,6 +33,9 @@ class Calculator:
             return x / y
 
 cll = Calculator() #instance 생성
+def print_result(count, result):
+    print(f"count: {count} / {result}")
+
 
 while True:
     s = input()
@@ -31,15 +45,6 @@ while True:
         a, c, b = s.split()
         a = int(a)
         b = int(b)
-        if c == "+":
-            print(f"count: {cll.count} / {cll.add(a, b)}")
-        elif c == "-":
-            print(f"count: {cll.count} / {cll.sub(a, b)}")
-        elif c == "*":
-            print(f"count: {cll.count} / {cll.mul(a, b)}")
-        elif c == "/":
-            print(f"count: {cll.count} / {cll.div(a, b)}")
-        else:
-            print("invalid")
+        print_result(cll.count, cll.calculate(a, b, c))
     except Exception as e:
         print("error", e)
