@@ -32,13 +32,13 @@ while True:
         a = int(a)
         b = int(b)
         if c == "+":
-            print("count: ", cll.count, "/", cll.add(a, b))
+            print(f"count: {cll.count} / {cll.add(a, b)}")
         elif c == "-":
-            print("count: ", cll.count, "/", cll.sub(a, b))
+            print(f"count: {cll.count} / {cll.sub(a, b)}")
         elif c == "*":
-            print("count: ", cll.count, "/", cll.mul(a, b))
+            print(f"count: {cll.count} / {cll.mul(a, b)}")
         elif c == "/":
-            print("count: ", cll.count, "/", cll.div(a, b))
+            print(f"count: {cll.count} / {cll.div(a, b)}")
         else:
             print("invalid")
     except Exception as e:
