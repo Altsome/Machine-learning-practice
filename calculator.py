@@ -8,6 +8,7 @@ class Calculator:
             "-": self.sub,
             "*": self.mul,
             "/": self.div,
+            "**": self.pow
         }
         if op not in methods:
             print("invalid")
@@ -31,6 +32,9 @@ class Calculator:
             return None
         else:
             return x / y
+
+    def pow(self, x, y):
+        return x**y
 
 cll = Calculator() #instance 생성
 def print_result(count, result):
