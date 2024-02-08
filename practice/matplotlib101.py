@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from Network.activation_functions.functions import *
+from network.activation_functions.functions import *
 
 def draw_function(fn, x_range):
     y = fn(x_range)
