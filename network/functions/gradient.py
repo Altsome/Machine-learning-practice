@@ -29,7 +29,7 @@ def gradient_descent(f, init_x, lr=0.1, step_num=100):     # lr = 학습률
     for i in range(step_num):
         grad = numerical_gradient(f, x)
         x -= lr * grad
-        plt.scatter(x[0], x[1])
+        # plt.scatter(x[0], x[1])
     return x
 
 

@@ -8,7 +8,7 @@ from functions.activation_functions import softmax, sigmoid
 
 
 def get_data():
-    (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+    (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=True, one_hot_label=True)
     # normalize = 정규화(0~255 -> 0~1), flatten = 1차원 배열로 폄
     return x_train, t_train, x_test, t_test
 
@@ -39,10 +39,34 @@ def mini_batch(batch_size):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
+    return x_batch, t_batch
 
 
 x_train, t_train, x_test, t_test = get_data()
 network = init_network()
+
+print(np.argmax(forward(network, x_test[1])))
+print(t_test[1])
+
+def evaluate_accuracy():
+    accuracy_count = 0
+    for i in range(len(x_test)):
+        p = np.argmax(forward(network, x_test[i]))
+        accuracy_count += (p == t_test[i])
+    return accuracy_count / len(x_test)
+
+
+def evaluate_accuracy_on_batch(batch_size):
+    accuracy_count = 0
+    for i in range(0, len(x_test), batch_size):
+        x_batch = x_test[i:i+batch_size]
+        t_batch = t_test[i:i+batch_size]
+        p = np.argmax(forward(network, x_batch), axis=1)
+        accuracy_count += (np.sum(p == t_batch))
+    return accuracy_count / len(x_test)
+
+print(evaluate_accuracy_on_batch(100))
+
 
 # 정확도 구하는 함수
 # def evaluate_accuracy(batch_size):
