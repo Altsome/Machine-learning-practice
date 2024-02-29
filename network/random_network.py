@@ -23,8 +23,9 @@ def forward(network, activation_function, x):
     return y
 
 
-x = np.array([0, 0])
 network = init_network()
-y = forward(network, sigmoid, x)
 
-print(y)
+x = np.array([0, 0])
+predict = forward(network, sigmoid, x)
+
+print(predict)
