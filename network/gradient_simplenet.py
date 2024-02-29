@@ -5,6 +5,7 @@ from functions.loss_functions import cross_entropy_error
 from functions.gradient import numerical_gradient
 sys.path.append(os.pardir)
 
+
 class Network:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01): # 기본적인 파라미터, 하이퍼 파라미터 설정
         self.parameter = {

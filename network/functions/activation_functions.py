@@ -10,7 +10,7 @@ def sigmoid(x):  # for batch & single
     return 1 / (1 + np.exp(-x))    # 브로드캐스팅 가능
 
 
-def relu(x):     # for bacth & single
+def relu(x):     # for single
     return np.maximum(x, 0)
 
 
