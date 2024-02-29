@@ -1,19 +1,18 @@
-import numpy as np
 import sys, os
-sys.path.append(os.pardir)
-from functions.activation_functions import sigmoid
-from functions.activation_functions import softmax
+import numpy as np
+from functions.activation_functions import softmax, sigmoid
 from functions.loss_functions import cross_entropy_error
 from functions.gradient import numerical_gradient
+sys.path.append(os.pardir)
 
-
-class Net:
+class Network:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01): # 기본적인 파라미터, 하이퍼 파라미터 설정
-        self.parameter = {}
-        self.parameter["W1"] = weight_init_std * np.random.randn(input_size, hidden_size)   # 784 x n 사이즈 가중치 설정
-        self.parameter["b1"] = np.zeros(hidden_size)
-        self.parameter["W2"] = weight_init_std * np.random.randn(hidden_size, output_size)  # n x 10(0~9) 사이즈 가중치 설정
-        self.parameter["b2"] = np.zeros(output_size)
+        self.parameter = {
+            "W1": weight_init_std * np.random.randn(input_size, hidden_size),   # 784 x n 사이즈 가중치 설정
+            "b1": np.zeros(hidden_size),
+            "W2": weight_init_std * np.random.randn(hidden_size, output_size),  # n x 10(0~9) 사이즈 가중치 설정
+            "b2": np.zeros(output_size),
+        }
 
     def predict(self, x):   # 가중치를 불러오고 계산 실행
         W1, W2 = self.parameter["W1"], self.parameter["W2"]
@@ -38,18 +37,18 @@ class Net:
 
     def numerical_gradient(self, x, t):
         loss = lambda W: self.loss(x, t)    # loss함수를 W에 대한 함수로 변환
-        grads = {}
-        grads["W1"] = numerical_gradient(loss, self.parameter["W1"])    # loss함수에 대한 기울기를 구함(각각의 가중치에 대해서 따로 기울기를 구함)
-        grads["W2"] = numerical_gradient(loss, self.parameter["W2"])
-        grads["b1"] = numerical_gradient(loss, self.parameter["b1"])
-        grads["b2"] = numerical_gradient(loss, self.parameter["b2"])
 
+        grads = {
+            "W1": numerical_gradient(loss, self.parameter["W1"]),  # loss함수에 대한 기울기를 구함(각각의 가중치에 대해서 따로 기울기를 구함)
+            "b1": numerical_gradient(loss, self.parameter["b1"]),
+            "W2": numerical_gradient(loss, self.parameter["W2"]),
+            "b2": numerical_gradient(loss, self.parameter["b2"]),
+        }
         return grads
 
 
-
 if __name__ == "__main__":
-    net = Net(2, 20, 3)
+    net = Network(2, 20, 3)
     x = np.array([0.6, 0.9])
     y = net.predict(x)
     print(y)
