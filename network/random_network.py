@@ -3,13 +3,14 @@ from functions.activation_functions import identity_function, sigmoid
 
 
 def init_network():
-    network = {}
-    network["W1"] = np.random.randn(2, 3)
-    network["W2"] = np.random.randn(3, 2)
-    network["W3"] = np.random.randn(2, 2)
-    network["b1"] = np.random.randn(3)
-    network["b2"] = np.random.randn(2)
-    network["b3"] = np.random.randn(2)
+    network = {
+        "W1": np.random.randn(2, 3),
+        "W2": np.random.randn(3, 2),
+        "W3": np.random.randn(2, 2),
+        "b1": np.random.randn(3),
+        "b2": np.random.randn(2),
+        "b3": np.random.randn(2),
+    }
     return network
 
 
@@ -23,8 +24,9 @@ def forward(network, activation_function, x):
     return y
 
 
-x = np.array([0, 0])
 network = init_network()
-y = forward(network, sigmoid, x)
 
-print(y)
+x = np.array([0, 0])
+predict = forward(network, sigmoid, x)
+
+print(predict)

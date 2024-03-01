@@ -7,24 +7,26 @@ def numerical_diff(f, x):   # 수치미분(근사치를 구함)
     return (f(x+h)-f(x-h)) / (2*h)
 
 
+# 기울기 구함
 def numerical_gradient(f, x):   # 편미분
     h = 1e-4
-    flattned = x.reshape(-1)
-    grad = np.zeros_like(flattned)     # X와 같은 형상의 배열을 생성
-    for idx in range(flattned.size):
-        init_x = flattned[idx]
-        flattned[idx] = init_x + h
+    flattened = x.reshape(-1)
+    grad = np.zeros_like(flattened)     # X와 같은 형상의 배열을 생성
+    for idx in range(flattened.size):
+        init_x = flattened[idx]
+        flattened[idx] = init_x + h
         fxh1 = f(x)
-        flattned[idx] = init_x - h
+        flattened[idx] = init_x - h
         fxh2 = f(x)
 
         grad[idx] = (fxh1 - fxh2) / (2*h)
-        flattned[idx] = init_x
+        flattened[idx] = init_x
 
     grad = grad.reshape(x.shape)
     return grad
 
 
+# 학습
 def gradient_descent(f, init_x, lr=0.1, step_num=100):     # lr = 학습률
     x = init_x
 
