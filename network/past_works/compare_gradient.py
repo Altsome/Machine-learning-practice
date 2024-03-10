@@ -1,6 +1,6 @@
 import numpy as np
 from dataset.mnist import load_mnist
-from network.backprop_simplenet import Network
+from network.past_works.backprop_simplenet import Network
 
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=True, one_hot_label=True)
 
