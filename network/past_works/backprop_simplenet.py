@@ -1,9 +1,7 @@
 import numpy as np
 from collections import OrderedDict
-from functions.gradient import numerical_gradient
-from layers.Affine import Affine
-from layers.Activations import Relu, SoftmaxWithLoss
-
+from common.layers import *
+from common.gradient import *
 
 class Network:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):

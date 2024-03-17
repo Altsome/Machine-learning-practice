@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
-from network.backprop_simplenet import Network
+from network.past_works.backprop_simplenet import Network
 
 # 데이터들 불러옴
 (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=True, one_hot_label=True)
 
 # hyper파라미터 지정
 hyper_params = {
-    "iters_num": 5000,
+    "iters_num": 10000,
     "train_size": x_train.shape[0],
     "batch_size": 128,
     "learning_rate": 1e-2,

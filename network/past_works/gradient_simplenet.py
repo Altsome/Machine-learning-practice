@@ -1,8 +1,8 @@
 import sys, os
 import numpy as np
-from functions.activation_functions import softmax, sigmoid
-from functions.loss_functions import cross_entropy_error
-from functions.gradient import numerical_gradient
+from common.functions import softmax, sigmoid
+from common.functions import cross_entropy_error
+from common.gradient import numerical_gradient
 sys.path.append(os.pardir)
 
 

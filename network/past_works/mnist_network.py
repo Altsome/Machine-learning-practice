@@ -2,8 +2,8 @@ import sys, os
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
-from functions.activation_functions import softmax, sigmoid
-from PIL import Image
+from common.functions import softmax, sigmoid
+
 sys.path.append(os.pardir)  # 부모의 디렉터리에서 파일을 가져올 수 있도록 허용
 
 
@@ -14,7 +14,7 @@ def get_data():
 
 
 def init_network():
-    with open("dataset/sample_weight.pkl", "rb") as f:  # 파일을 읽고 자동으로 닫아주는 코드(rb는 읽을 포맷중 하나)
+    with open("../../dataset/sample_weight.pkl", "rb") as f:  # 파일을 읽고 자동으로 닫아주는 코드(rb는 읽을 포맷중 하나)
         network = pickle.load(f)    # pickle은 파이썬이 데이터를 저장하는 모듈
 
     return network
